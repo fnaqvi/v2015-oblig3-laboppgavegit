@@ -54,6 +54,20 @@ public abstract class Kort {
 		this.sperretKort = sperret;
 	}
 
+	public void setForNavn(String forNavn) {
+		this.forNavn = forNavn;
+	}
+	
+	public void setEtterNavn(String etterNavn) {
+		this.etterNavn = etterNavn;
+	}
+	
+	public void setNavn(String fulltNavn) {
+		String[] arrNavn = fulltNavn.split(" ");
+		this.forNavn = arrNavn[0];
+		this.etterNavn = arrNavn[1];
+	}
+
 	public String toString() {
 		return "Navn: " + this.getNavn() + ", Kortnummer: "
 				+ this.getKortNummer() + ", PIN: " + this.getPINCode()
