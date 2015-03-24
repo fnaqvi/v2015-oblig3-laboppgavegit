@@ -39,4 +39,37 @@ public class Gjest extends Kort {
 			return (this.getPINCode() == pin);
 	}
 
+	@Override
+	public int compareTo(Kort anotherGjest) {
+
+		if (this.getEtterNavn().equals(anotherGjest.getEtterNavn())) {
+			if (this.getForNavn().equals(anotherGjest.getForNavn())) {
+				return 0;
+			} else {
+				return this.getForNavn().compareTo(anotherGjest.getForNavn());
+			}
+		} else {
+			return this.getEtterNavn().compareTo(anotherGjest.getEtterNavn());
+		}
+
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		Gjest clonedGjest = (Gjest) super.clone();
+
+		clonedGjest.utstedelsesTidspunkt = (GregorianCalendar) this.utstedelsesTidspunkt
+				.clone();
+
+		return clonedGjest;
+	}
+
+	@Override
+	public String toString() {
+		return "Navn: " + this.getNavn() + ", Kortnummer: "
+				+ this.getKortNummer() + ", PIN: " + this.getPINCode()
+				+ ", Sperret: " + (this.isSperret() ? "Ja" : "Nei") + ", Utstedt: "
+				+ this.getUtstedelsesTidspunkt().getTime();
+	}
+
 }

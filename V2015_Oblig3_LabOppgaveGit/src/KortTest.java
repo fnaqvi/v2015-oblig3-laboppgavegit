@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class KortTest {
 
@@ -6,10 +7,18 @@ public class KortTest {
 
 		ArrayList<Kort> reg = new ArrayList<Kort>();
 
-		Kort k1 = new Ansatt("Ole Olsen", 1234);
-		Kort k2 = new Gjest("Marit Olsen" /* , 9999 */);
-		reg.add(k1);
-		reg.add(k2);
+		Kort a1 = new Ansatt("Ole Olsen", 1234);
+		Kort a2 = new Ansatt("Ola Nordmann", 4578);
+		Kort a3 = new Ansatt("Kari Nordmann", 9584);
+		Kort g1 = new Gjest("Marit Olsen" /* , 9999 */);
+		Kort g2 = new Gjest("Maria Sharapova" /* , 9999 */);
+		Kort g3 = new Gjest("Martin Wawne" /* , 9999 */);
+		reg.add(a1);
+		reg.add(a2);
+		reg.add(a3);
+		reg.add(g1);
+		reg.add(g2);
+		reg.add(g3);
 
 		for (int i = 0; i < reg.size(); i++) {
 			Kort kort = (Kort) reg.get(i);
@@ -20,5 +29,11 @@ public class KortTest {
 					+ (kort.sjekkPIN(9999) ? " gyldig" : " ugyldig"));
 			System.out.println("\n");
 		}
+		
+		Collections.sort(reg);
+		for(Kort kort : reg){
+			System.out.println(kort);
+		}	
+		
 	}
 }

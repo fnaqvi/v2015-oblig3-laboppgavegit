@@ -1,4 +1,4 @@
-public abstract class Kort {
+public abstract class Kort implements Cloneable, Comparable<Kort> {
 
 	private String forNavn;
 	private String etterNavn;
@@ -57,11 +57,11 @@ public abstract class Kort {
 	public void setForNavn(String forNavn) {
 		this.forNavn = forNavn;
 	}
-	
+
 	public void setEtterNavn(String etterNavn) {
 		this.etterNavn = etterNavn;
 	}
-	
+
 	public void setNavn(String fulltNavn) {
 		String[] arrNavn = fulltNavn.split(" ");
 		this.forNavn = arrNavn[0];

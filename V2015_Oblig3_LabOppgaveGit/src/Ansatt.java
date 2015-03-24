@@ -87,4 +87,27 @@ public class Ansatt extends Kort implements Fast {
 	public double beregnBonus() {
 		return BONUSPROSENT * this.ansiennitet;
 	}
+
+	@Override
+	public int compareTo(Kort anotherAnsatt) {
+
+		if (this.getEtterNavn().equals(anotherAnsatt.getEtterNavn())) {
+			if (this.getForNavn().equals(anotherAnsatt.getForNavn())) {
+				return 0;
+			} else {
+				return this.getForNavn().compareTo(anotherAnsatt.getForNavn());
+			}
+		} else {
+			return this.getEtterNavn().compareTo(anotherAnsatt.getEtterNavn());
+		}
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		Ansatt clonedAnsatt = (Ansatt) super.clone();
+		
+		// No properties to deep copy
+		
+		return clonedAnsatt;
+	}
 }
