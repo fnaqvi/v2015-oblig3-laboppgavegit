@@ -1,18 +1,31 @@
-
 public abstract class Kort {
 
 	private String forNavn;
 	private String etterNavn;
 	private int pINKode;
 	private String kortNummer;
-	private int aksessKode;
+	// private int aksessKode;
 	private boolean sperretKort;
 
-	public Kort(String forNavn, String etterNavn, int pINKode, int aksessKode) {
+	public Kort(String forNavn, String etterNavn, int pINKode /* , int aksessKode */) {
 		this.forNavn = forNavn;
 		this.etterNavn = etterNavn;
 		this.pINKode = pINKode;
-		this.aksessKode = aksessKode;
+		// this.aksessKode = aksessKode;
+
+		kortNummer = generateCreditCardNbr(16);
+
+		this.sperretKort = false;
+	}
+
+	public Kort(String navn, int pINKode /* , int aksessKode */) {
+
+		String[] arrNavn = navn.split(" ");
+		this.forNavn = arrNavn[0];
+		this.etterNavn = arrNavn[1];
+
+		this.pINKode = pINKode;
+		// this.aksessKode = aksessKode;
 
 		kortNummer = generateCreditCardNbr(16);
 
@@ -23,7 +36,7 @@ public abstract class Kort {
 		String randomCardNbr = "";
 
 		for (int i = 0; i < length; i++) {
-			randomCardNbr += Math.random() * 10;
+			randomCardNbr += (int) (Math.random() * 10);
 		}
 
 		return randomCardNbr;
@@ -37,11 +50,14 @@ public abstract class Kort {
 		return this.sperretKort;
 	}
 
+	public void setSperretKort(boolean sperret) {
+		this.sperretKort = sperret;
+	}
+
 	public String toString() {
 		return "Navn: " + this.getNavn() + ", Kortnummer: "
 				+ this.getKortNummer() + ", PIN: " + this.getPINCode()
-				+ ", Aksesskode: " + this.getAksessKode() + ", Sperret: "
-				+ (this.isSperret() ? "Ja" : "Nei");
+				+ ", Sperret: " + (this.isSperret() ? "Ja" : "Nei");
 	}
 
 	public abstract boolean sjekkPIN(int pin);
@@ -62,12 +78,8 @@ public abstract class Kort {
 		return this.kortNummer;
 	}
 
-	public int getAksessKode() {
-		return this.aksessKode;
-	}
-	
-	public static void main(String[] args){
-		
-	}
+	/*
+	 * public int getAksessKode() { return this.aksessKode; }
+	 */
 
 }
